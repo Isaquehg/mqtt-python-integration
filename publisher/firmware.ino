@@ -9,11 +9,11 @@ const char* ssid = "WLL-Inatel";
 const char* password = "inatelsemfio";
 
 // MQTT Broker
-const char* mqtt_broker = "url.ala.us-east-1.emqxsl.com";
+const char* mqtt_broker = "j2c2fe61.ala.us-east-1.emqxsl.com";
 const int mqtt_port = 8883;
-const char* topic = "yourtopic/data";
-const char* mqtt_username = "username";
-const char* mqtt_password = "passWord";
+const char* topic = "data/flux";
+const char* mqtt_username = "samuel";
+const char* mqtt_password = "$4muelF1lho";
 
 // WiFi Client
 WiFiClientSecure espClient;
@@ -86,13 +86,9 @@ void loop() {
         Serial.println("Failed to read from flux sensor!");
 
     String message = "{";
-    message += "\"u_id\": \"64caccb46b1a8787775d075d\",";
-    message += "\"d_id\": \"abcdefghijk\",";
-    message += "\"d_name\": \"Fetin Device\",";
-    message += "\"latitude\": " + String(-22.2583, 6) + ",";
-    message += "\"longitude\": " + String(-45.6963, 6) + ",";
-    message += "\"date\": \"" + currentDateTime + "\",";
-    message += "\"air_humidity\": " + String(flux);
+    message += "\"device\": \"ESP8266 NodeMCU Samuel\",";
+    message += "\"timestamp\": \"" + currentDateTime + "\",";
+    message += "\"flux\": " + String(flux);
     message += "}";
 
     client.publish(topic, message.c_str());
@@ -101,6 +97,7 @@ void loop() {
     delay(5000);
 }
 
+// Timestamp format
 String getFormattedDateTime(unsigned long epochTime) {
     unsigned long seconds = epochTime;
     unsigned long minutes = seconds / 60;

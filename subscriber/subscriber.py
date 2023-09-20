@@ -6,12 +6,12 @@ import random
 client = pymongo.MongoClient("str")
 db = client.databasename
 
-BROKER = 'test.ala.us-east-1.emqxsl.com'
+BROKER = 'j2c2fe61.ala.us-east-1.emqxsl.com'
 PORT = 8883
-TOPIC = 'topicname/data'
+TOPIC = 'data/flux'
 CLIENT_ID = f'python-mqtt-{random.randint(0, 1000)}'
-USERNAME = 'isaquehg'
-PASSWORD = 'passWord'
+USERNAME = 'samuel'
+PASSWORD = '$4muelF1lho'
 ROOT_CA_PATH = '/app/certs/emqxsl-ca.crt'
 
 def connect_mqtt() -> mqtt_client:
