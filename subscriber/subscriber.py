@@ -3,8 +3,8 @@ import pymongo
 import json
 import random
 
-client = pymongo.MongoClient("str")
-db = client.databasename
+client = pymongo.MongoClient("mongodb+srv://samuelnascimentof:rhBu0oB8SLVPZsYa@flowsensorscluster.hnybqa4.mongodb.net/Data?retryWrites=true&w=majority")
+db = client.Data
 
 BROKER = 'j2c2fe61.ala.us-east-1.emqxsl.com'
 PORT = 8883
@@ -34,7 +34,7 @@ def subscribe(client: mqtt_client):
         # Perform necessary operations with the received data
         payload = msg.payload.decode('utf-8')
         data = json.loads(payload)
-        result = db["collection"].insert_one(data)
+        result = db["sensor_lakes"].insert_one(data)
         print("Document inserted! ID:", result.inserted_id)
 
     client.subscribe(TOPIC, qos=0)
