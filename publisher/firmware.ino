@@ -81,14 +81,16 @@ void loop() {
 
     // Flux sensor reading code here...
     float flux = 0;
+    float total_flux = 0;
 
     if (isnan(flux))
         Serial.println("Failed to read from flux sensor!");
 
     String message = "{";
-    message += "\"device\": \"ESP8266 NodeMCU Samuel\",";
+    message += "\"sensor_id\": \"X\",";
     message += "\"timestamp\": \"" + currentDateTime + "\",";
-    message += "\"flux\": " + String(flux);
+    message += "\"total_flow_24h\": \"" + total_flux + "\",";
+    message += "\"current_flow\": " + String(flux);
     message += "}";
 
     client.publish(topic, message.c_str());
